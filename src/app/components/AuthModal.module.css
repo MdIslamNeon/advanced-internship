@@ -1,0 +1,97 @@
+.title {
+    text-align: center;
+}
+
+.authContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px;
+  max-width: 400px;
+  margin: 0 auto;
+  background-color: lightcyan;
+}
+
+.ctaBtn {
+  background-color: #4b5563;
+  color: white;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dividerLine {
+  flex: 1;
+  height: 1px;
+  background-color: #d1d5db;
+}
+
+.dividerText {
+  color: #4b5563;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.guestBtn {
+  background-color: #4b5563;
+  color: white;
+  border: none;
+}
+
+.googleBtn {
+  position: relative;
+  background-color: #4285f4;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+}
+
+.googleIcon {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  bottom: 4px;
+  width: 44px;
+  background-color: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loginBtn {
+  background-color: #2bd97c;
+  color: #032b41;
+  border: none;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid #9ca3af;
+  border-radius: 6px;
+  outline: none;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.authLink {
+  text-align: center;
+  color: #0365f2;
+  cursor: pointer;
+}
