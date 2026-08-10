@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import NavBar from "./components/NavBar";
 import Landing from "./components/Landing";
@@ -7,7 +7,7 @@ import Reviews from "./components/Reviews";
 import Numbers from "./components/Numbers";
 import Footer from "./components/Footer";
 import AuthModal from "./components/AuthModal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -19,6 +19,14 @@ export default function Home() {
   function closeModal() {
     setIsAuthModalOpen(false);
   }
+
+  useEffect(() => {
+    document.body.style.overflow = isAuthModalOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isAuthModalOpen]);
 
   return (
     <>

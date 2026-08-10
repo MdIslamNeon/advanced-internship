@@ -9,9 +9,11 @@
   flex-direction: column;
   gap: 16px;
   padding: 32px;
+  width: 100%;
   max-width: 400px;
   margin: 0 auto;
-  background-color: lightcyan;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .ctaBtn {
@@ -110,4 +112,15 @@
   color: #032b41;
   cursor: pointer;
   padding: 4px;
+}
+
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 24px;
 }
