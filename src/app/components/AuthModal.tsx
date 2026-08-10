@@ -3,13 +3,14 @@ import styles from "./AuthModal.module.css";
 import googleLogo from "../../../public/google.png";
 import Image from "next/image";
 
-function AuthModal() {
+function AuthModal({closeModal}: {closeModal: () => void}) {
 
     function handleSubmit() {
         
     }
   return (
     <div className={styles.authContainer}>
+      <button className={styles.closeBtn} onClick={closeModal}>✕</button>
       <h1 className={styles.title}>Log in to Summarist</h1>
       <button className={`${styles.ctaBtn} ${styles.guestBtn}`}>
         Login as a Guest

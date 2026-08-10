@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import logo from "../../../public/logo.png";
 
-function NavBar() {
+function NavBar({openModal}: {openModal: () => void}) {
   return (
     <nav className="nav">
       <div className="nav__wrapper">
@@ -10,7 +10,7 @@ function NavBar() {
           <Image className="nav__img" src={logo} alt="logo" />
         </figure>
         <ul className="nav__list--wrapper">
-          <li className="nav__list nav__list--login">Login</li>
+          <li className="nav__list nav__list--login" onClick={openModal}>Login</li>
           <li className="nav__list nav__list--mobile">About</li>
           <li className="nav__list nav__list--mobile">Contact</li>
           <li className="nav__list nav__list--mobile">Help</li>

@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import landing from "../../../public/landing.png";
 
-function Landing() {
+function Landing({openModal}: {openModal: () => void}) {
   return (
     <section id="landing">
       <div className="container">
@@ -20,7 +20,7 @@ function Landing() {
                 <br className="remove--tablet" />
                 and even people who don’t like to read.
               </div>
-              <button className="btn home__cta--btn">Login</button>
+              <button className="btn home__cta--btn" onClick={openModal}>Login</button>
             </div>
             <figure className="landing__image--mask">
               <Image src={landing} alt="landing" />

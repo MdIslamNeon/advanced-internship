@@ -1,8 +1,10 @@
 .title {
     text-align: center;
+    margin-top: 24px;
 }
 
 .authContainer {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -94,4 +96,18 @@
   text-align: center;
   color: #0365f2;
   cursor: pointer;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  margin-bottom: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: #032b41;
+  cursor: pointer;
+  padding: 4px;
 }
