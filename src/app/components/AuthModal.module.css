@@ -46,6 +46,7 @@
 }
 
 .guestBtn {
+  position: relative;
   background-color: #4b5563;
   color: white;
   border: none;
@@ -60,6 +61,19 @@
 }
 
 .googleIcon {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  bottom: 4px;
+  width: 44px;
+  background-color: white;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.guestIcon {
   position: absolute;
   left: 4px;
   top: 4px;

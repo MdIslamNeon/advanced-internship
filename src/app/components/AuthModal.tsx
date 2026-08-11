@@ -2,6 +2,7 @@
 
 import styles from "./AuthModal.module.css";
 import googleLogo from "../../../public/google.png";
+import guestLogo from "../../../public/guest_icon.png"
 import Image from "next/image";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { closeModal } from "@/redux/modalSlice";
@@ -25,7 +26,11 @@ function AuthModal() {
           ✕
         </button>
         <h1 className={styles.title}>Log in to Summarist</h1>
+
         <button className={`${styles.ctaBtn} ${styles.guestBtn}`}>
+          <span className={styles.guestIcon}>
+            <Image src={guestLogo} alt="" width={20} height={20} />
+          </span>
           Login as a Guest
         </button>
 
