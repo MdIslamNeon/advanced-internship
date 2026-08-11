@@ -6,33 +6,25 @@ import Features from "./components/Features";
 import Reviews from "./components/Reviews";
 import Numbers from "./components/Numbers";
 import Footer from "./components/Footer";
-import AuthModal from "./components/AuthModal";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
+import { useAppSelector } from "@/redux/hooks";
 
 export default function Home() {
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
-  function openModal() {
-    setIsAuthModalOpen(true);
-  }
-
-  function closeModal() {
-    setIsAuthModalOpen(false);
-  }
+  const {isOpen, modalType} = useAppSelector((state) => state.modal);
 
   useEffect(() => {
-    document.body.style.overflow = isAuthModalOpen ? "hidden" : "";
+    document.body.style.overflow = isOpen ? "hidden" : "";
 
     return () => {
       document.body.style.overflow = "";
     };
-  }, [isAuthModalOpen]);
+  }, [isOpen]);
 
   return (
     <>
-      {isAuthModalOpen && <AuthModal closeModal={closeModal} />}
-      <NavBar openModal={openModal} />
-      <Landing openModal={openModal} />
+      <NavBar/>
+      <Landing/>
       <Features />
       <Reviews />
       <Numbers />

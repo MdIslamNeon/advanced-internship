@@ -1,15 +1,27 @@
 "use client";
+
 import styles from "./AuthModal.module.css";
 import googleLogo from "../../../public/google.png";
 import Image from "next/image";
+import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import { closeModal } from "@/redux/modalSlice";
 
-function AuthModal({ closeModal }: { closeModal: () => void }) {
+function AuthModal() {
+
+  // 1. Extract the modal status and active view type from your global Redux store
+  const { isOpen, modalType } = useAppSelector((state) => state.modal);
+  const dispatch = useAppDispatch();
+
+  if(!isOpen) {
+    return null;
+  }
+
   function handleSubmit() {}
   
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.authContainer}>
-        <button className={styles.closeBtn} onClick={closeModal}>
+        <button className={styles.closeBtn} onClick={() => dispatch(closeModal())}>
           ✕
         </button>
         <h1 className={styles.title}>Log in to Summarist</h1>
