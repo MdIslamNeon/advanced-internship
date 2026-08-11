@@ -9,7 +9,7 @@ import { closeModal } from "@/redux/modalSlice";
 function AuthModal() {
 
   // 1. Extract the modal status and active view type from your global Redux store
-  const { isOpen, modalType } = useAppSelector((state) => state.modal);
+  const { isOpen } = useAppSelector((state) => state.modal);
   const dispatch = useAppDispatch();
 
   if(!isOpen) {

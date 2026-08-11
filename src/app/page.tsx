@@ -11,7 +11,7 @@ import { useAppSelector } from "@/redux/hooks";
 
 export default function Home() {
 
-  const {isOpen, modalType} = useAppSelector((state) => state.modal);
+  const {isOpen} = useAppSelector((state) => state.modal);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "";
