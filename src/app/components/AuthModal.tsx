@@ -6,6 +6,9 @@ import guestLogo from "../../../public/guest_icon.png"
 import Image from "next/image";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { closeModal } from "@/redux/modalSlice";
+import { auth } from "@/redux/firebase";
+import { signInAnonymously } from "firebase/auth";
+import { useRouter } from "next/navigation";
 
 function AuthModal() {
 
@@ -13,11 +16,29 @@ function AuthModal() {
   const { isOpen } = useAppSelector((state) => state.modal);
   const dispatch = useAppDispatch();
 
+  const router = useRouter();
+
   if(!isOpen) {
     return null;
   }
 
-  function handleSubmit() {}
+  async function guestLogin() {
+    try {
+      const userCredential = await signInAnonymously(auth);
+      const user = userCredential.user;
+      console.log("Logged in as guest! User ID:", user.uid);
+      // Optional: Redirect the user to your app dashboard here
+      router.push('/for-you')
+    } 
+    catch (err) {
+      const error = err as Error
+      console.error("Guest login failed:", error.message);
+      // setError("Could not sign in as a guest. Please try again.");
+    } 
+    finally {
+      // setIsLoading(false);
+    }
+  }
   
   return (
     <div className={styles.modalOverlay}>
@@ -27,7 +48,7 @@ function AuthModal() {
         </button>
         <h1 className={styles.title}>Log in to Summarist</h1>
 
-        <button className={`${styles.ctaBtn} ${styles.guestBtn}`}>
+        <button className={`${styles.ctaBtn} ${styles.guestBtn}`} onClick={guestLogin}>
           <span className={styles.guestIcon}>
             <Image src={guestLogo} alt="" width={20} height={20} />
           </span>
@@ -53,7 +74,7 @@ function AuthModal() {
           <span className={styles.dividerLine}></span>
         </div>
 
-        <form className={styles.authForm} onSubmit={handleSubmit}>
+        <form className={styles.authForm}>
           <input
             className={styles.input}
             type="email"
