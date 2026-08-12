@@ -2,14 +2,14 @@ import styles from "./AuthModal.module.css";
 import googleLogo from "../../../public/google.png";
 import guestLogo from "../../../public/guest_icon.png";
 import Image from "next/image";
-import { useAppSelector, useAppDispatch } from "@/redux/hooks";
-import { closeModal } from "@/redux/modalSlice";
+import { useAppDispatch } from "@/redux/hooks";
+import { closeModal, openModal } from "@/redux/modalSlice";
 import { useRouter } from "next/navigation";
 import { signInAnonymously } from "firebase/auth";
 import { auth } from "@/redux/firebase";
 
 function Login() {
-    
+
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -92,7 +92,7 @@ function Login() {
         </form>
 
         <h4 className={styles.authLink}>Forgot your password?</h4>
-        <h4 className={styles.authLink}>Don&apos;t have an account?</h4>
+        <h4 className={styles.authLink} onClick={() => dispatch(openModal('signup'))}>Don&apos;t have an account?</h4>
       </div>
     </div>
   );
