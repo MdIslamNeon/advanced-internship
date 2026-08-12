@@ -1,26 +1,17 @@
-"use client";
-
 import styles from "./AuthModal.module.css";
 import googleLogo from "../../../public/google.png";
-import guestLogo from "../../../public/guest_icon.png"
+import guestLogo from "../../../public/guest_icon.png";
 import Image from "next/image";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { closeModal } from "@/redux/modalSlice";
-import { auth } from "@/redux/firebase";
-import { signInAnonymously } from "firebase/auth";
 import { useRouter } from "next/navigation";
+import { signInAnonymously } from "firebase/auth";
+import { auth } from "@/redux/firebase";
 
-function AuthModal() {
-
-  // 1. Extract the modal status and active view type from your global Redux store
-  const { isOpen, modalType } = useAppSelector((state) => state.modal);
+function Login() {
+    
   const dispatch = useAppDispatch();
-
   const router = useRouter();
-
-  if(!isOpen) {
-    return null;
-  }
 
   async function guestLogin() {
     try {
@@ -29,27 +20,31 @@ function AuthModal() {
       console.log("Logged in as guest! User ID:", user.uid);
       dispatch(closeModal());
       // Optional: Redirect the user to your app dashboard here
-      router.push('/for-you')
-    } 
-    catch (err) {
-      const error = err as Error
+      router.push("/for-you");
+    } catch (err) {
+      const error = err as Error;
       console.error("Guest login failed:", error.message);
       // setError("Could not sign in as a guest. Please try again.");
-    } 
-    finally {
+    } finally {
       // setIsLoading(false);
     }
   }
-  
+
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.authContainer}>
-        <button className={styles.closeBtn} onClick={() => dispatch(closeModal())}>
+        <button
+          className={styles.closeBtn}
+          onClick={() => dispatch(closeModal())}
+        >
           ✕
         </button>
         <h1 className={styles.title}>Log in to Summarist</h1>
 
-        <button className={`${styles.ctaBtn} ${styles.guestBtn}`} onClick={guestLogin}>
+        <button
+          className={`${styles.ctaBtn} ${styles.guestBtn}`}
+          onClick={guestLogin}
+        >
           <span className={styles.guestIcon}>
             <Image src={guestLogo} alt="" width={20} height={20} />
           </span>
@@ -103,4 +98,4 @@ function AuthModal() {
   );
 }
 
-export default AuthModal;
+export default Login;
