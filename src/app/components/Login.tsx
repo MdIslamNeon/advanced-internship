@@ -11,9 +11,10 @@ import { signInAnonymously } from "firebase/auth";
 import { auth } from "@/redux/firebase";
 import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { toast } from "sonner";
+import { getAuthErrorMessage } from "@/lib/authErrors";
 
 function Login() {
-
   const dispatch = useAppDispatch();
   const router = useRouter();
 
@@ -40,14 +41,13 @@ function Login() {
   async function handleLogin(e: React.SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
     try {
-        await signInWithEmailAndPassword(auth, email, password);
-        dispatch(closeModal());
+      await signInWithEmailAndPassword(auth, email, password);
+      dispatch(closeModal());
+      toast.success(`Welcome back, ${email}!`);
 
-        router.push("/for-you");
-    }
-    catch (err) {
-        const error = err as Error;
-        console.log(error);
+      router.push("/for-you");
+    } catch (err) {
+      toast.error(getAuthErrorMessage(err));
     }
   }
 
@@ -97,14 +97,14 @@ function Login() {
             type="email"
             placeholder="Email Address"
             required
-            onChange={e => setEmail(e.target.value)}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <input
             className={styles.input}
             type="password"
             placeholder="Password"
             required
-            onChange={e => setPassword(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
           />
           <button
             className={`${styles.ctaBtn} ${styles.loginBtn}`}
@@ -115,7 +115,12 @@ function Login() {
         </form>
 
         <h4 className={styles.authLink}>Forgot your password?</h4>
-        <h4 className={styles.authLink} onClick={() => dispatch(openModal('signup'))}>Don&apos;t have an account?</h4>
+        <h4
+          className={styles.authLink}
+          onClick={() => dispatch(openModal("signup"))}
+        >
+          Don&apos;t have an account?
+        </h4>
       </div>
     </div>
   );

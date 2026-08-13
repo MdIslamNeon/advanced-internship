@@ -9,6 +9,8 @@ import { useRouter } from "next/navigation";
 import {auth} from '../../redux/firebase'
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
+import { toast } from "sonner";
+import { getAuthErrorMessage } from "@/lib/authErrors";
 
 function Signup() {
 
@@ -23,12 +25,12 @@ function Signup() {
     try {
         await createUserWithEmailAndPassword(auth, email, password);
         dispatch(closeModal());
+        toast.success("Welcome! Your account was created successfully.");
 
         router.push("/for-you")
     }
     catch (err) {
-        const error = err as Error;
-        console.log(error);
+        toast.error(getAuthErrorMessage(err));
     }
   }
 
