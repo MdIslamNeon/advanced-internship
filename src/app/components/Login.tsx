@@ -1,3 +1,5 @@
+"use client";
+
 import styles from "./AuthModal.module.css";
 import googleLogo from "../../../public/google.png";
 import guestLogo from "../../../public/guest_icon.png";
@@ -7,11 +9,16 @@ import { closeModal, openModal } from "@/redux/modalSlice";
 import { useRouter } from "next/navigation";
 import { signInAnonymously } from "firebase/auth";
 import { auth } from "@/redux/firebase";
+import { useState } from "react";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 function Login() {
 
   const dispatch = useAppDispatch();
   const router = useRouter();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   async function guestLogin() {
     try {
@@ -27,6 +34,20 @@ function Login() {
       // setError("Could not sign in as a guest. Please try again.");
     } finally {
       // setIsLoading(false);
+    }
+  }
+
+  async function handleLogin(e: React.SubmitEvent<HTMLFormElement>) {
+    e.preventDefault();
+    try {
+        await signInWithEmailAndPassword(auth, email, password);
+        dispatch(closeModal());
+
+        router.push("/for-you");
+    }
+    catch (err) {
+        const error = err as Error;
+        console.log(error);
     }
   }
 
@@ -70,18 +91,20 @@ function Login() {
           <span className={styles.dividerLine}></span>
         </div>
 
-        <form className={styles.authForm}>
+        <form className={styles.authForm} onSubmit={(e) => handleLogin(e)}>
           <input
             className={styles.input}
             type="email"
             placeholder="Email Address"
             required
+            onChange={e => setEmail(e.target.value)}
           />
           <input
             className={styles.input}
             type="password"
             placeholder="Password"
             required
+            onChange={e => setPassword(e.target.value)}
           />
           <button
             className={`${styles.ctaBtn} ${styles.loginBtn}`}
