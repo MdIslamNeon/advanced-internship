@@ -1,10 +1,15 @@
 import React from 'react'
+import Sidebar from '../components/Sidebar';
+import Searchbar from '../components/Searchbar';
+import ForYouContent from '../components/ForYouContent';
 
 function ForYou() {
   return (
-    <div>
-        For-you page
-    </div>
+    <>
+      <Sidebar />
+      <Searchbar />
+      <ForYouContent />
+    </>
   )
 }
 
