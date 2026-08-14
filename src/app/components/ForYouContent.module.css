@@ -1,0 +1,39 @@
+.row {
+    max-width: 1070px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.container {
+    padding: 40px 0;
+    width: 100%;
+}
+
+.for_you_title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #032b41;
+    margin-bottom: 16px;
+}
+
+.selected__book {
+    display: flex;
+    justify-content: space-between;
+    width: calc((100% / 3) * 2);
+    background-color: #fbefd6;
+    border-radius: 4px;
+    padding: 24px;
+    margin-bottom: 24px;
+    gap: 24px;
+}
+
+.selected__book_sub_title {
+    color: #032b41;
+    width: 40%;
+}
+
+.selected__book_line {
+    width: 1px;
+    background-color: #bac8ce;
+}
