@@ -1,6 +1,7 @@
 import styles from "./ForYouContent.module.css";
 import axios from "axios";
 import type { Book } from "../types";
+import Image from "next/image";
 
 async function SelectedForYou() {
   const { data } = await axios.get<Book[]>(
@@ -19,10 +20,12 @@ async function SelectedForYou() {
         <div className={styles.selected__book_line}></div>
         <div className={styles.selected__book_content}>
           <figure className={styles.book__image_wrapper}>
-            <img
+            <Image
               className={styles.book__image}
               src={book.imageLink}
               alt={book.title}
+              width={80}
+              height={80}
             />
           </figure>
           <div className={styles.selected__book_text}>
