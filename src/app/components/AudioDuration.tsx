@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./ForYouContent.module.css";
 
 // Turns 204.5 (seconds, what the browser reports) into "03:24".
@@ -20,6 +20,17 @@ function AudioDuration({ audioLink }: { audioLink: string }) {
     }
   };
 
+  // On a refresh the mp3 headers are usually cached, so `loadedmetadata` can
+  // fire before React hydrates and attaches the handler above — the event is
+  // then missed and the duration never appears. readyState >= 1 (HAVE_METADATA)
+  // means it already arrived, so read the duration directly instead of waiting.
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (audio && audio.readyState >= 1) {
+      setDuration(audio.duration);
+    }
+  }, []);
+
   return (
     <div className={styles.recommended__book_details_text}>
       {/* preload="metadata" tells the browser to fetch just the audio header,
@@ -30,7 +41,9 @@ function AudioDuration({ audioLink }: { audioLink: string }) {
         preload="metadata"
         onLoadedMetadata={handleLoadedMetadata}
       />
-      {duration === null ? "--:--" : formatDuration(duration)}
+      {duration !== null && Number.isFinite(duration)
+        ? formatDuration(duration)
+        : "--:--"}
     </div>
   );
 }

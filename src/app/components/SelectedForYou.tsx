@@ -24,8 +24,8 @@ async function SelectedForYou() {
               className={styles.book__image}
               src={book.imageLink}
               alt={book.title}
-              width={80}
-              height={80}
+              width={150}
+              height={200}
             />
           </figure>
           <div className={styles.selected__book_text}>

@@ -1,6 +1,7 @@
 import styles from './ForYouContent.module.css';
 import SelectedForYou from './SelectedForYou';
 import RecommendedBooks from './RecommendedBooks';
+import SuggestedBooks from './SuggestedBooks';
 
 async function ForYouContent() {
   return (
@@ -10,6 +11,7 @@ async function ForYouContent() {
           <div className={styles.for_you_wrapper}>
             <SelectedForYou />
             <RecommendedBooks />
+            <SuggestedBooks />
           </div>
         </div>
       </div>
