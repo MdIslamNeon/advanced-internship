@@ -1,11 +1,22 @@
-import React from 'react'
+import styles from './ForYouContent.module.css';
+import SelectedForYou from './SelectedForYou';
+import RecommendedBooks from './RecommendedBooks';
+import SuggestedBooks from './SuggestedBooks';
 
-function ForYouContent() {
+async function ForYouContent() {
   return (
-    <div>
-      
+    <div className={styles.for_you__background}>
+      <div className={styles.row}>
+        <div className={styles.container}>
+          <div className={styles.for_you_wrapper}>
+            <SelectedForYou />
+            <RecommendedBooks />
+            <SuggestedBooks />
+          </div>
+        </div>
+      </div>
     </div>
-  )
+  );
 }
 
-export default ForYouContent
+export default ForYouContent;
