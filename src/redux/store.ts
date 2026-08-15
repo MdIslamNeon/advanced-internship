@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 import modalReducer from './modalSlice';
+import userReducer from './userSlice';
 
 // 1. Configure the global Redux store
 export const store = configureStore({
   reducer: {
     modal: modalReducer, // Registers your modalSlice under state.modal
+    user: userReducer
   },
 });
 
