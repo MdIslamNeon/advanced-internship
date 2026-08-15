@@ -92,12 +92,95 @@
     color: #6b757b;
 }
 
-.recommended__books {
-
-}
-
 .for_you_subtitle {
     font-weight: 300;
     color: #394547;
     margin-bottom: 16px;
+}
+
+.for_you_recommended_books {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    /* shorthand: axis + strictness in one declaration */
+    scroll-snap-type: x mandatory;
+    margin-bottom: 32px;
+}
+
+.for_you_recommended_books_link {
+    /* fixed width + no shrinking is what makes the row scroll
+       instead of squashing 8 covers into the visible width */
+    width: 200px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    padding: 16px 12px;
+    border-radius: 4px;
+    text-decoration: none;
+    /* anchors the absolutely positioned .book__pill to this card */
+    position: relative;
+}
+
+.for_you_recommended_books_link:hover {
+    background-color: #f1f6f4;
+}
+
+.recommended__book_image_wrapper {
+    width: 172px;
+    height: 172px;
+    margin: 0 auto 8px;
+}
+
+.recommended__book_title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #032b41;
+    margin-bottom: 8px;
+}
+
+.recommended__book_author {
+    font-size: 14px;
+    color: #6b757b;
+    margin-bottom: 8px;
+}
+
+.recommended__book_subtitle {
+    font-size: 14px;
+    color: #394547;
+    margin-bottom: 8px;
+}
+
+.book__pill {
+    background-color: #032b41;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 18px;
+    padding: 0 8px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: #fff;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+}
+
+.recommended__book_details_wrapper {
+    display: flex;
+    gap: 8px;
+}
+
+.recommended__book_details {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #6b757b;
+}
+
+.recommended__book_details_icon {
+    display: flex;
+    width: 16px;
+    height: 16px;
 }
