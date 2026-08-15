@@ -1,0 +1,274 @@
+/* The sidebar is position:fixed and 200px wide, so it sits outside the
+   normal flow. Offset the page content to match, the same way
+   .for_you__background does in ForYouContent.module.css. */
+.book__background {
+    margin-left: 200px;
+}
+
+.row {
+    max-width: 1070px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.container {
+    padding: 40px 0;
+    width: 100%;
+}
+
+.inner__wrapper {
+    display: flex;
+    gap: 16px;
+}
+
+.inner__book {
+    width: 100%;
+}
+
+/* --- heading --- */
+
+.inner__book_title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #032b41;
+    margin-bottom: 16px;
+    line-height: 1.5;
+}
+
+.inner__book_author {
+    font-size: 18px;
+    font-weight: 700;
+    color: #032b41;
+    margin-bottom: 16px;
+}
+
+.inner__book_sub_title {
+    font-size: 20px;
+    font-weight: 300;
+    color: #032b41;
+    margin-bottom: 16px;
+    line-height: 1.5;
+    /* the divider under the header block */
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e1e7ea;
+}
+
+.inner__book_secondary_title {
+    font-size: 18px;
+    color: #032b41;
+    margin-bottom: 16px;
+    font-weight: 600;
+}
+
+/* --- stats box: rating / duration / format / key ideas --- */
+
+.inner__book_wrapper {
+    /* 2 x 2 grid, so the four stats line up in columns */
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 24px;
+    max-width: 400px;
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e1e7ea;
+}
+
+.inner__book_description {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #032b41;
+}
+
+.inner__book_icon {
+    display: flex;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* react-icons render as inline <svg> at 1em — force them to fill the box */
+.inner__book_icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* --- read / listen buttons --- */
+
+.inner__book_read_btn_wrapper {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.inner__book_read_btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 144px;
+    height: 48px;
+    background-color: #032b41;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: opacity 200ms;
+}
+
+.inner__book_read_btn:hover {
+    opacity: 0.8;
+}
+
+/* --- bookmark link --- */
+
+.inner__book_bookmark {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #0365f2;
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    transition: color 200ms;
+}
+
+.inner__book_bookmark:hover {
+    color: #044298;
+}
+
+/* --- tags --- */
+
+.inner__book_tags_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.inner__book_tag {
+    background-color: #f1f6f4;
+    padding: 12px 16px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #032b41;
+    border-radius: 4px;
+}
+
+/* --- body copy --- */
+
+.inner__book_secondary_title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #032b41;
+    margin-bottom: 16px;
+}
+
+.inner__book_summary {
+    font-size: 16px;
+    color: #032b41;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    /* the API sends the text with real line breaks — keep them */
+    white-space: pre-line;
+}
+
+/* --- cover image --- */
+
+.inner__book_img_wrapper {
+    width: 300px;
+    height: 300px;
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.inner__book_img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* --- loading skeleton --- */
+
+.skeleton {
+    background-color: #e4e4e4;
+    border-radius: 4px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.skeleton__title {
+    height: 32px;
+    width: 60%;
+    margin-bottom: 16px;
+}
+
+.skeleton__author {
+    height: 20px;
+    width: 30%;
+    margin-bottom: 16px;
+}
+
+.skeleton__sub_title {
+    height: 24px;
+    width: 45%;
+    margin-bottom: 16px;
+}
+
+.skeleton__stats {
+    height: 100px;
+    max-width: 400px;
+    margin-bottom: 24px;
+}
+
+.skeleton__btns {
+    height: 48px;
+    width: 304px;
+    margin-bottom: 24px;
+}
+
+.skeleton__text {
+    height: 16px;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.skeleton__img {
+    width: 300px;
+    height: 300px;
+    flex-shrink: 0;
+}
+
+/* --- error / empty state --- */
+
+.inner__book_error {
+    font-size: 18px;
+    color: #6b757b;
+}
+
+/* Below the sidebar's breakpoint the cover would squash the text column,
+   so stack them instead. */
+@media (max-width: 768px) {
+    .book__background {
+        margin-left: 0;
+    }
+
+    .inner__wrapper {
+        flex-direction: column-reverse;
+    }
+
+    .inner__book_img_wrapper,
+    .skeleton__img {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+    }
+}
