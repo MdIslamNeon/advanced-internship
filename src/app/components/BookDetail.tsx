@@ -23,6 +23,19 @@ function BookDetail({ book, loading }: Props) {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
+  function handleRead() {
+    if(!user) {
+      dispatch(openModal('login'));
+      return;
+    }
+    if(book?.subscriptionRequired) {
+      router.push("/choose-plan");
+      return;
+    }
+
+    router.push(`/player/${book?.id}`)
+  }
+
   if (loading) {
     return (
       <div className={styles.book__background}>
@@ -122,21 +135,13 @@ function BookDetail({ book, loading }: Props) {
               <div className={styles.inner__book_read_btn_wrapper}>
                 <button
                   className={styles.inner__book_read_btn}
-                  onClick={() =>
-                    user
-                      ? router.push(`/player/${book.id}`)
-                      : dispatch(openModal("login"))
-                  }
+                  onClick={() => handleRead()}
                 >
                   Read
                 </button>
                 <button
                   className={styles.inner__book_read_btn}
-                  onClick={() =>
-                    user
-                      ? router.push(`/player/${book.id}`)
-                      : dispatch(openModal("login"))
-                  }
+                  onClick={() => handleRead()}
                 >
                   Listen
                 </button>
