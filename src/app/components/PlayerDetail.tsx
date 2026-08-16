@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { Book } from "../types";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { openModal } from "@/redux/modalSlice";
+import { AudioPlayer } from "./audio-player/AudioPlayer";
 
 function PlayerDetail() {
   const { bookId } = useParams();
@@ -81,6 +82,7 @@ function PlayerDetail() {
       <div className={styles.audio__book_summary}>
         <div className={styles.audio__book_summary_title}>{book.title}</div>
         <div className={styles.audio__book_summary_text}>{book.summary}</div>
+        <AudioPlayer />
       </div>
     </div>
   );

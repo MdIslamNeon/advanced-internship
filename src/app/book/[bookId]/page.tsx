@@ -20,6 +20,7 @@ function BookPage() {
           `https://us-central1-summaristt.cloudfunctions.net/getBook?id=${id}`,
         );
         setBook(data);
+        console.log(data);
       } catch (error) {
         console.log(error);
       }
