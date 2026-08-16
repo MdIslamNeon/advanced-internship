@@ -82,7 +82,7 @@ function PlayerDetail() {
       <div className={styles.audio__book_summary}>
         <div className={styles.audio__book_summary_title}>{book.title}</div>
         <div className={styles.audio__book_summary_text}>{book.summary}</div>
-        <AudioPlayer />
+        <AudioPlayer book={book} />
       </div>
     </div>
   );
