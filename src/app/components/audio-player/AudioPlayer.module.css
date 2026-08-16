@@ -4,7 +4,7 @@
   background-color: #042330;
   display: flex;
   flex-direction: column;
-  gap: 36px;
+  gap: 16px;
   justify-content: space-between;
   align-items: center;
   color: #fff;
@@ -16,14 +16,16 @@
   z-index: 9998;
 }
 
-.audio__controls {
-  width: 100%;
+/* The three sections each take an equal third of the bar, so the controls stay
+   centred no matter how long the book title or the timestamps are. */
+.audio__track,
+.audio__controls,
+.audio__progress {
   flex: 1;
-  margin: auto;
+  min-width: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
 }
 
 .audio__actions {
@@ -36,5 +38,14 @@
 @media (min-width: 1024px) {
   .audio__wrapper {
     flex-direction: row;
+  }
+
+  /* Outer thirds hug the edges; the middle third stays centred. */
+  .audio__track {
+    justify-content: flex-start;
+  }
+
+  .audio__progress {
+    justify-content: flex-end;
   }
 }
