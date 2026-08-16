@@ -3,7 +3,6 @@
 import TrackInfo from "./TrackInfo";
 import Controls from "./Controls";
 import ProgressBar from "./ProgressBar";
-import VolumeControl from "./VolumeControl";
 import styles from "./AudioPlayer.module.css";
 import { Book } from "@/app/types";
 import { useRef, useState, useEffect } from "react";
