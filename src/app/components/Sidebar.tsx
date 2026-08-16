@@ -10,12 +10,21 @@ import { IoIosSearch } from "react-icons/io";
 import { CiSettings } from "react-icons/ci";
 import { HiOutlineQuestionMarkCircle } from "react-icons/hi2";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { openModal } from "@/redux/modalSlice";
+import { useRouter } from "next/navigation";
+import { signOut } from "firebase/auth";
+import {auth} from '../../redux/firebase';
 
 function Sidebar() {
-
+  const { user, loading } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+  const router = useRouter();
+
+  async function handleLogout() {
+    await signOut(auth);
+    router.push('/');
+  }
 
   return (
     <div className={styles.sidebar}>
@@ -72,7 +81,21 @@ function Sidebar() {
             <div className={styles.sidebar__icon__wrapper}>
               <FaArrowRightFromBracket />
             </div>
-            <div className={styles.sidebar__link__text} onClick={() => dispatch(openModal('login'))}>Login</div>
+            {loading ? null : user ? (
+              <div
+                className={styles.sidebar__link__text}
+                onClick={handleLogout}
+              >
+                Logout
+              </div>
+            ) : (
+              <div
+                className={styles.sidebar__link__text}
+                onClick={() => dispatch(openModal("login"))}
+              >
+                Login
+              </div>
+            )}
           </div>
         </div>
       </div>

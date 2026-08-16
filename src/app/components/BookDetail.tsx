@@ -9,6 +9,9 @@ import {
   CiLight,
   CiBookmark,
 } from "react-icons/ci";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { useRouter } from "next/navigation";
+import { openModal } from "@/redux/modalSlice";
 
 interface Props {
   book: Book | null;
@@ -16,6 +19,10 @@ interface Props {
 }
 
 function BookDetail({ book, loading }: Props) {
+  const { user } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
   if (loading) {
     return (
       <div className={styles.book__background}>
@@ -35,12 +42,22 @@ function BookDetail({ book, loading }: Props) {
                 <div
                   className={`${styles.skeleton} ${styles.skeleton__stats}`}
                 />
-                <div className={`${styles.skeleton} ${styles.skeleton__btns}`} />
-                <div className={`${styles.skeleton} ${styles.skeleton__text}`} />
-                <div className={`${styles.skeleton} ${styles.skeleton__text}`} />
-                <div className={`${styles.skeleton} ${styles.skeleton__text}`} />
+                <div
+                  className={`${styles.skeleton} ${styles.skeleton__btns}`}
+                />
+                <div
+                  className={`${styles.skeleton} ${styles.skeleton__text}`}
+                />
+                <div
+                  className={`${styles.skeleton} ${styles.skeleton__text}`}
+                />
+                <div
+                  className={`${styles.skeleton} ${styles.skeleton__text}`}
+                />
               </div>
-              <figure className={`${styles.skeleton} ${styles.skeleton__img}`} />
+              <figure
+                className={`${styles.skeleton} ${styles.skeleton__img}`}
+              />
             </div>
           </div>
         </div>
@@ -71,7 +88,9 @@ function BookDetail({ book, loading }: Props) {
                 {book.subscriptionRequired ? " (Premium)" : ""}
               </div>
               <div className={styles.inner__book_author}>{book.author}</div>
-              <div className={styles.inner__book_sub_title}>{book.subTitle}</div>
+              <div className={styles.inner__book_sub_title}>
+                {book.subTitle}
+              </div>
 
               <div className={styles.inner__book_wrapper}>
                 <div className={styles.inner__book_description}>
@@ -101,8 +120,26 @@ function BookDetail({ book, loading }: Props) {
               </div>
 
               <div className={styles.inner__book_read_btn_wrapper}>
-                <button className={styles.inner__book_read_btn}>Read</button>
-                <button className={styles.inner__book_read_btn}>Listen</button>
+                <button
+                  className={styles.inner__book_read_btn}
+                  onClick={() =>
+                    user
+                      ? router.push(`/player/${book.id}`)
+                      : dispatch(openModal("login"))
+                  }
+                >
+                  Read
+                </button>
+                <button
+                  className={styles.inner__book_read_btn}
+                  onClick={() =>
+                    user
+                      ? router.push(`/player/${book.id}`)
+                      : dispatch(openModal("login"))
+                  }
+                >
+                  Listen
+                </button>
               </div>
 
               <button className={styles.inner__book_bookmark}>
