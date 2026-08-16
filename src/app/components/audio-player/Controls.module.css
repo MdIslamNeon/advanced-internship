@@ -1,0 +1,20 @@
+.audio__controls_wrapper {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.audio__controls_btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #fff;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.audio__controls_btn_play {
+  font-size: 40px;
+}

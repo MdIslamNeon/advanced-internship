@@ -12,7 +12,7 @@ import { HiOutlineQuestionMarkCircle } from "react-icons/hi2";
 import { FaArrowRightFromBracket } from "react-icons/fa6";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { openModal } from "@/redux/modalSlice";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { signOut } from "firebase/auth";
 import {auth} from '../../redux/firebase';
 
@@ -20,6 +20,9 @@ function Sidebar() {
   const { user, loading } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const router = useRouter();
+
+  // Only the player page renders the fixed audio bar at the bottom.
+  const isPlayerPage = usePathname().startsWith("/player");
 
   async function handleLogout() {
     await signOut(auth);
@@ -31,7 +34,11 @@ function Sidebar() {
       <div className={styles.sidebar__logo}>
         <Image className={styles.sidebar__img} src={logo} alt="landing logo" />
       </div>
-      <div className={styles.sidebar__wrapper}>
+      <div
+        className={`${styles.sidebar__wrapper} ${
+          isPlayerPage ? styles.sidebar__wrapper_player : ""
+        }`}
+      >
         <div className={styles.sidebar__top}>
           <a className={styles.sidebar__link__wrapper} href="/for-you">
             <div className={styles.sidebar__icon__wrapper}>

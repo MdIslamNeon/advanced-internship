@@ -1,0 +1,21 @@
+.audio__track_wrapper {
+  display: flex;
+  gap: 12px;
+}
+
+.audio__track_image {
+  max-width: 48px;
+}
+
+.audio__track_details_wrapper {
+  color: #fff;
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  justify-content: center;
+}
+
+.audio__track_author {
+  color: #bac8ce;
+}

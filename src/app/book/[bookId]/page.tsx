@@ -22,8 +22,7 @@ function BookPage() {
         setBook(data);
       } catch (error) {
         console.log(error);
-      }
-      finally {
+      } finally {
         setLoading(false);
       }
     }

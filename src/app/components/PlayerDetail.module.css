@@ -1,0 +1,57 @@
+.player__background {
+    margin-left: 200px;
+}
+
+.audio__book_summary {
+    padding: 24px 24px 104px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.audio__book_summary_title {
+    color: #032b41;
+    font-size: 24px;
+    border-bottom: 1px solid #e1e7ea;
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+.audio__book_summary_text {
+    white-space: pre-line;
+    line-height: 1.4;
+    color: #032b41;
+}
+
+/* --- loading skeleton --- */
+
+.skeleton {
+    background-color: #e4e4e4;
+    border-radius: 4px;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+}
+
+.skeleton__title {
+    height: 32px;
+    width: 60%;
+    margin-bottom: 32px;
+}
+
+.skeleton__text {
+    height: 16px;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+/* --- error / empty state --- */
+
+.audio__book_error {
+    font-size: 18px;
+    color: #6b757b;
+}
