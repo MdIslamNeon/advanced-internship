@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 function ChoosePlanPage() {
-  return (
-    <div>
-      Choose Plan
-    </div>
-  )
+  return <div>Choose Plans from below</div>;
 }
 
-export default ChoosePlanPage
+export default ChoosePlanPage;
