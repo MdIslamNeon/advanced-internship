@@ -230,6 +230,85 @@ function ChoosePlanPage() {
           </div>
         </div>
       </div>
+      <section id={styles.footer}>
+          <div className={styles.footer__container}>
+            <div className={styles.footer__row}>
+              <div className={styles.footer__top_wrapper}>
+                <div className={styles.footer__block}>
+                  <div className={styles.footer__link_title}>Actions</div>
+                  <div>
+                    <div className={styles.footer__link_wrapper}>
+                      <a className={styles.footer__link}>Summarist Magazine</a>
+                    </div>
+                    <div className={styles.footer__link_wrapper}>
+                      <a className={styles.footer__link}>Cancel Subcription</a>
+                    </div>
+                    <div className={styles.footer__link_wrapper}>
+                      <a className={styles.footer__link}>Help</a>
+                    </div>
+                    <div className={styles.footer__link_wrapper}>
+                      <a className={styles.footer__link}>Contact us</a>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.footer__block}>
+                  <div className={styles.footer__link_title}>Useful Links</div>
+                  <div>
+                    <div className={styles.footer__link_wrapper}>
+                      <a className={styles.footer__link}>Pricing</a>
+                    </div>
+                    <div className={styles.footer__link_wrapper}>
+                      <a className={styles.footer__link}>Summarist Business</a>
+                    </div>
+                    <div className={styles.footer__link_wrapper}>
+                      <a className={styles.footer__link}>Gift Cards</a>
+                    </div>
+                    <div className={styles.footer__link_wrapper}>
+                      <a className={styles.footer__link}>Authors & Publishers</a>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.footer__block}>
+                  <div className={styles.footer__link_title}>Company</div>
+                  <div>
+                    <div className={styles.footer__link_wrapper}>
+                      <a className={styles.footer__link}>About</a>
+                    </div>
+                    <div className={styles.footer__link_wrapper}>
+                      <a className={styles.footer__link}>Careers</a>
+                    </div>
+                    <div className={styles.footer__link_wrapper}>
+                      <a className={styles.footer__link}>Partners</a>
+                    </div>
+                    <div className={styles.footer__link_wrapper}>
+                      <a className={styles.footer__link}>Code of Conduct</a>
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.footer__block}>
+                  <div className={styles.footer__link_title}>Other</div>
+                  <div>
+                    <div className={styles.footer__link_wrapper}>
+                      <a className={styles.footer__link}>Sitemap</a>
+                    </div>
+                    <div className={styles.footer__link_wrapper}>
+                      <a className={styles.footer__link}>Legal Notice</a>
+                    </div>
+                    <div className={styles.footer__link_wrapper}>
+                      <a className={styles.footer__link}>Terms of Service</a>
+                    </div>
+                    <div className={styles.footer__link_wrapper}>
+                      <a className={styles.footer__link}>Privacy Policies</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.footer__copyright_wrapper}>
+                <div className={styles.footer__copyright}>Copyright &copy; 2026 Summarist</div>
+              </div>
+            </div>
+          </div>
+      </section>
     </div>
   );
 }
