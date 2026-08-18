@@ -6,6 +6,7 @@ import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { setUser } from "./userSlice";
 
+
 export function AuthListener() {
   const dispatch = useAppDispatch();
 

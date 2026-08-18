@@ -13,7 +13,12 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "sonner";
 import { getAuthErrorMessage } from "@/lib/authErrors";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+
+const provider = new GoogleAuthProvider();
 
 function Login() {
   const dispatch = useAppDispatch();
@@ -22,20 +27,16 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const provider = new GoogleAuthProvider();
-
   async function guestLogin() {
     try {
       const userCredential = await signInAnonymously(auth);
       const user = userCredential.user;
       console.log("Logged in as guest! User ID:", user.uid);
       dispatch(closeModal());
-      // Optional: Redirect the user to your app dashboard here
+      
       router.push("/for-you");
     } catch (err) {
-      const error = err as Error;
-      console.error("Guest login failed:", error.message);
-      // setError("Could not sign in as a guest. Please try again.");
+      toast.error(getAuthErrorMessage(err))
     } finally {
       // setIsLoading(false);
     }
@@ -57,7 +58,10 @@ function Login() {
   async function handleGoogleLogin() {
     try {
       const result = await signInWithPopup(auth, provider);
-      if (result.user) router.push("/for-you");
+      if (result.user) {
+        dispatch(closeModal());
+        router.push("/for-you");
+      }
     } catch (err) {
       toast.error(getAuthErrorMessage(err));
     }
@@ -110,6 +114,7 @@ function Login() {
           <input
             className={styles.input}
             type="email"
+            value={email}
             placeholder="Email Address"
             required
             onChange={(e) => setEmail(e.target.value)}
@@ -117,6 +122,7 @@ function Login() {
           <input
             className={styles.input}
             type="password"
+            value={password}
             placeholder="Password"
             required
             onChange={(e) => setPassword(e.target.value)}
