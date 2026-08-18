@@ -70,7 +70,7 @@ function Sidebar() {
           </div>
         </div>
         <div className={styles.sidebar__bottom}>
-          <a className={styles.sidebar__link__wrapper} href="/for-you">
+          <a className={styles.sidebar__link__wrapper} href="/settings">
             <div className={styles.sidebar__icon__wrapper}>
               <CiSettings />
             </div>
