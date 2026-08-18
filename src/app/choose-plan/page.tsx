@@ -9,6 +9,11 @@ import { FaHandshake } from "react-icons/fa";
 import { useState } from "react";
 import { Fragment } from "react";
 import { IoIosArrowDown } from "react-icons/io";
+import { db } from "@/redux/firebase";
+import { useAppSelector } from "@/redux/hooks";
+import { useDispatch } from "react-redux";
+import { openModal } from "@/redux/modalSlice";
+import { collection, addDoc, onSnapshot } from "firebase/firestore";
 
 function ChoosePlanPage() {
   const [activeId, setActiveId] = useState("month");
@@ -16,6 +21,10 @@ function ChoosePlanPage() {
   const [isOpen2, setIsOpen2] = useState(false);
   const [isOpen3, setIsOpen3] = useState(false);
   const [isOpen4, setIsOpen4] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { user } = useAppSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const plans = [
     {
@@ -23,14 +32,60 @@ function ChoosePlanPage() {
       name: "Monthly Plan",
       price: "$9.99",
       text: "No trial included",
+      priceId: "price_1U5tN50BgYxUel3cujcoBpBJ"
     },
     {
       id: "year",
       name: "Premium Plus Yearly",
       price: "$99.99",
       text: "7-day free trial included",
+      priceId: "price_1U5u1U0BgYxUel3c0Ylcev1t"
     },
   ];
+
+  async function handleSubscribe() {
+    if (!user) {
+      dispatch(openModal("login"));
+      return;
+    }
+    const selectedPlan = plans.find((plan) => plan.id === activeId);
+    if (!selectedPlan) return;
+
+    setIsLoading(true);
+
+    try {
+      const docRef = await addDoc(
+        collection(db, "customers", user.uid, "checkout_sessions"),
+        {
+          price: selectedPlan.priceId,
+          success_url: `${window.location.origin}/for-you`,
+          cancel_url: `${window.location.origin}/choose-plan`,
+        },
+      );
+
+      // Wait for the CheckoutSession to get attached by the extension
+      const unsubscribe = onSnapshot(docRef, (snap) => {
+        const data = snap.data();
+        // The first snapshot is our own write, before the extension has replied.
+        if (!data) return;
+
+        const { error, url } = data;
+        if (error) {
+          unsubscribe();
+          setIsLoading(false);
+          alert(`An error occured: ${error.message}`);
+        }
+        if (url) {
+          unsubscribe();
+          // We have a Stripe Checkout URL, let's redirect.
+          window.location.assign(url);
+        }
+      });
+    } catch (err) {
+      setIsLoading(false);
+      alert(`Could not start checkout: ${(err as Error).message}`);
+    }
+  }
 
   return (
     <div className={styles.plan}>
@@ -120,8 +175,14 @@ function ChoosePlanPage() {
           })}
           <div className={styles.plan__card_cta}>
             <span className={styles.btn_wrapper}>
-              <button className={styles.btn}>
-                {activeId === "year" ? (
+              <button
+                className={styles.btn}
+                onClick={handleSubscribe}
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <span>Processing...</span>
+                ) : activeId === "year" ? (
                   <span>Start your free 7-day trial</span>
                 ) : (
                   <span>Start your first month</span>
