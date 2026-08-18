@@ -121,13 +121,23 @@ function ChoosePlanPage() {
           <div className={styles.plan__card_cta}>
             <span className={styles.btn_wrapper}>
               <button className={styles.btn}>
-                <span>Start your free 7-day trial</span>
+                {activeId === "year" ? (
+                  <span>Start your free 7-day trial</span>
+                ) : (
+                  <span>Start your first month</span>
+                )}
               </button>
             </span>
-            <div className={styles.plan__disclaimer}>
-              Cancel your trial at any time before it ends, and you won’t be
-              charged.
-            </div>
+            {activeId === "year" ? (
+              <div className={styles.plan__disclaimer}>
+                Cancel your trial at any time before it ends, and you won’t be
+                charged.
+              </div>
+            ) : (
+              <div className={styles.plan__disclaimer}>
+                30-day money back guarantee, no questions asked.
+              </div>
+            )}
           </div>
           <div className={styles.faq_wrapper}>
             <div
@@ -231,83 +241,85 @@ function ChoosePlanPage() {
         </div>
       </div>
       <section id={styles.footer}>
-          <div className={styles.footer__container}>
-            <div className={styles.footer__row}>
-              <div className={styles.footer__top_wrapper}>
-                <div className={styles.footer__block}>
-                  <div className={styles.footer__link_title}>Actions</div>
-                  <div>
-                    <div className={styles.footer__link_wrapper}>
-                      <a className={styles.footer__link}>Summarist Magazine</a>
-                    </div>
-                    <div className={styles.footer__link_wrapper}>
-                      <a className={styles.footer__link}>Cancel Subcription</a>
-                    </div>
-                    <div className={styles.footer__link_wrapper}>
-                      <a className={styles.footer__link}>Help</a>
-                    </div>
-                    <div className={styles.footer__link_wrapper}>
-                      <a className={styles.footer__link}>Contact us</a>
-                    </div>
+        <div className={styles.footer__container}>
+          <div className={styles.footer__row}>
+            <div className={styles.footer__top_wrapper}>
+              <div className={styles.footer__block}>
+                <div className={styles.footer__link_title}>Actions</div>
+                <div>
+                  <div className={styles.footer__link_wrapper}>
+                    <a className={styles.footer__link}>Summarist Magazine</a>
                   </div>
-                </div>
-                <div className={styles.footer__block}>
-                  <div className={styles.footer__link_title}>Useful Links</div>
-                  <div>
-                    <div className={styles.footer__link_wrapper}>
-                      <a className={styles.footer__link}>Pricing</a>
-                    </div>
-                    <div className={styles.footer__link_wrapper}>
-                      <a className={styles.footer__link}>Summarist Business</a>
-                    </div>
-                    <div className={styles.footer__link_wrapper}>
-                      <a className={styles.footer__link}>Gift Cards</a>
-                    </div>
-                    <div className={styles.footer__link_wrapper}>
-                      <a className={styles.footer__link}>Authors & Publishers</a>
-                    </div>
+                  <div className={styles.footer__link_wrapper}>
+                    <a className={styles.footer__link}>Cancel Subcription</a>
                   </div>
-                </div>
-                <div className={styles.footer__block}>
-                  <div className={styles.footer__link_title}>Company</div>
-                  <div>
-                    <div className={styles.footer__link_wrapper}>
-                      <a className={styles.footer__link}>About</a>
-                    </div>
-                    <div className={styles.footer__link_wrapper}>
-                      <a className={styles.footer__link}>Careers</a>
-                    </div>
-                    <div className={styles.footer__link_wrapper}>
-                      <a className={styles.footer__link}>Partners</a>
-                    </div>
-                    <div className={styles.footer__link_wrapper}>
-                      <a className={styles.footer__link}>Code of Conduct</a>
-                    </div>
+                  <div className={styles.footer__link_wrapper}>
+                    <a className={styles.footer__link}>Help</a>
                   </div>
-                </div>
-                <div className={styles.footer__block}>
-                  <div className={styles.footer__link_title}>Other</div>
-                  <div>
-                    <div className={styles.footer__link_wrapper}>
-                      <a className={styles.footer__link}>Sitemap</a>
-                    </div>
-                    <div className={styles.footer__link_wrapper}>
-                      <a className={styles.footer__link}>Legal Notice</a>
-                    </div>
-                    <div className={styles.footer__link_wrapper}>
-                      <a className={styles.footer__link}>Terms of Service</a>
-                    </div>
-                    <div className={styles.footer__link_wrapper}>
-                      <a className={styles.footer__link}>Privacy Policies</a>
-                    </div>
+                  <div className={styles.footer__link_wrapper}>
+                    <a className={styles.footer__link}>Contact us</a>
                   </div>
                 </div>
               </div>
-              <div className={styles.footer__copyright_wrapper}>
-                <div className={styles.footer__copyright}>Copyright &copy; 2026 Summarist</div>
+              <div className={styles.footer__block}>
+                <div className={styles.footer__link_title}>Useful Links</div>
+                <div>
+                  <div className={styles.footer__link_wrapper}>
+                    <a className={styles.footer__link}>Pricing</a>
+                  </div>
+                  <div className={styles.footer__link_wrapper}>
+                    <a className={styles.footer__link}>Summarist Business</a>
+                  </div>
+                  <div className={styles.footer__link_wrapper}>
+                    <a className={styles.footer__link}>Gift Cards</a>
+                  </div>
+                  <div className={styles.footer__link_wrapper}>
+                    <a className={styles.footer__link}>Authors & Publishers</a>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.footer__block}>
+                <div className={styles.footer__link_title}>Company</div>
+                <div>
+                  <div className={styles.footer__link_wrapper}>
+                    <a className={styles.footer__link}>About</a>
+                  </div>
+                  <div className={styles.footer__link_wrapper}>
+                    <a className={styles.footer__link}>Careers</a>
+                  </div>
+                  <div className={styles.footer__link_wrapper}>
+                    <a className={styles.footer__link}>Partners</a>
+                  </div>
+                  <div className={styles.footer__link_wrapper}>
+                    <a className={styles.footer__link}>Code of Conduct</a>
+                  </div>
+                </div>
+              </div>
+              <div className={styles.footer__block}>
+                <div className={styles.footer__link_title}>Other</div>
+                <div>
+                  <div className={styles.footer__link_wrapper}>
+                    <a className={styles.footer__link}>Sitemap</a>
+                  </div>
+                  <div className={styles.footer__link_wrapper}>
+                    <a className={styles.footer__link}>Legal Notice</a>
+                  </div>
+                  <div className={styles.footer__link_wrapper}>
+                    <a className={styles.footer__link}>Terms of Service</a>
+                  </div>
+                  <div className={styles.footer__link_wrapper}>
+                    <a className={styles.footer__link}>Privacy Policies</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className={styles.footer__copyright_wrapper}>
+              <div className={styles.footer__copyright}>
+                Copyright &copy; 2026 Summarist
               </div>
             </div>
           </div>
+        </div>
       </section>
     </div>
   );
