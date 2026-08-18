@@ -13,6 +13,7 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "sonner";
 import { getAuthErrorMessage } from "@/lib/authErrors";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 function Login() {
   const dispatch = useAppDispatch();
@@ -20,6 +21,8 @@ function Login() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const provider = new GoogleAuthProvider();
 
   async function guestLogin() {
     try {
@@ -46,6 +49,15 @@ function Login() {
       toast.success(`Welcome back, ${email}!`);
 
       router.push("/for-you");
+    } catch (err) {
+      toast.error(getAuthErrorMessage(err));
+    }
+  }
+
+  async function handleGoogleLogin() {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      if (result.user) router.push("/for-you");
     } catch (err) {
       toast.error(getAuthErrorMessage(err));
     }
@@ -78,7 +90,10 @@ function Login() {
           <span className={styles.dividerLine}></span>
         </div>
 
-        <button className={`${styles.ctaBtn} ${styles.googleBtn}`}>
+        <button
+          className={`${styles.ctaBtn} ${styles.googleBtn}`}
+          onClick={handleGoogleLogin}
+        >
           <span className={styles.googleIcon}>
             <Image src={googleLogo} alt="" width={20} height={20} />
           </span>
