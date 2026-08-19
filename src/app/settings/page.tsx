@@ -21,17 +21,27 @@ function SettingsPage() {
             <div className={styles.settings__sub_title}>
               Your Subscription Plan
             </div>
-            <div className={styles.settings__text}>Basic</div>
-            <a
-              href="/choose-plan"
-              className={`${styles.btn} ${styles.settings__upgrade_btn}`}
-            >
-              Upgrade to Premium
-            </a>
+            {user?.isSubscribed ? (
+              <>Premium</>
+            ) : (
+              <>
+                <div className={styles.settings__text}>Basic</div>
+                <a
+                  href="/choose-plan"
+                  className={`${styles.btn} ${styles.settings__upgrade_btn}`}
+                >
+                  Upgrade to Premium
+                </a>
+              </>
+            )}
           </div>
           <div className={styles.setting__content}>
             <div className={styles.settings__sub_title}>Email</div>
-            <div className={styles.settings__text}>{user?.email}</div>
+            {user?.email ? (
+              <div className={styles.settings__text}>{user?.email}</div>
+            ) : (
+              <>guest@gmail.com</>
+            )}
           </div>
         </div>
       </div>

@@ -26,7 +26,16 @@ function ChoosePlanPage() {
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  const plans = [
+  type Plan = {
+    id: string,
+    name: string,
+    price: string,
+    text: string,
+    priceId: string,
+    trialDays?: number
+  }
+
+  const plans: Plan[] = [
     {
       id: "month",
       name: "Monthly Plan",
@@ -39,7 +48,8 @@ function ChoosePlanPage() {
       name: "Premium Plus Yearly",
       price: "$99.99",
       text: "7-day free trial included",
-      priceId: "price_1U5u1U0BgYxUel3c0Ylcev1t"
+      priceId: "price_1U5u1U0BgYxUel3c0Ylcev1t",
+      trialDays: 7
     },
   ];
 
@@ -58,6 +68,7 @@ function ChoosePlanPage() {
         collection(db, "customers", user.uid, "checkout_sessions"),
         {
           price: selectedPlan.priceId,
+          ...(selectedPlan.trialDays && { trial_period_days: selectedPlan.trialDays }),
           success_url: `${window.location.origin}/for-you`,
           cancel_url: `${window.location.origin}/choose-plan`,
         },
