@@ -22,7 +22,7 @@ function SettingsPage() {
               Your Subscription Plan
             </div>
             {user?.isSubscribed ? (
-              <>Premium</>
+              <>{user.planName}</>
             ) : (
               <>
                 <div className={styles.settings__text}>Basic</div>

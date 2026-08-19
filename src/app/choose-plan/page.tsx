@@ -14,6 +14,7 @@ import { useAppSelector } from "@/redux/hooks";
 import { useDispatch } from "react-redux";
 import { openModal } from "@/redux/modalSlice";
 import { collection, addDoc, onSnapshot } from "firebase/firestore";
+import { PRICE_IDS } from "@/redux/plans";
 
 function ChoosePlanPage() {
   const [activeId, setActiveId] = useState("month");
@@ -41,14 +42,14 @@ function ChoosePlanPage() {
       name: "Monthly Plan",
       price: "$9.99",
       text: "No trial included",
-      priceId: "price_1U5tN50BgYxUel3cujcoBpBJ"
+      priceId: PRICE_IDS.month
     },
     {
       id: "year",
       name: "Premium Plus Yearly",
       price: "$99.99",
       text: "7-day free trial included",
-      priceId: "price_1U5u1U0BgYxUel3c0Ylcev1t",
+      priceId: PRICE_IDS.year,
       trialDays: 7
     },
   ];

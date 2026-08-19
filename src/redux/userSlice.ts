@@ -6,6 +6,7 @@ interface AppUser {
   displayName: string | null; // null unless set (Google login fills this)
   isAnonymous: boolean;
   isSubscribed: boolean;
+  planName: string | null; // null unless subscribed
 }
 
 interface UserState {
