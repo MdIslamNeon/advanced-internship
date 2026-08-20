@@ -1,6 +1,7 @@
+"use client";
+
 import styles from "./Searchbar.module.css";
 import { IoIosSearch } from "react-icons/io";
-
 
 function Searchbar() {
   return (

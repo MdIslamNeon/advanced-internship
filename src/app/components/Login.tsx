@@ -13,6 +13,12 @@ import { useState } from "react";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { toast } from "sonner";
 import { getAuthErrorMessage } from "@/lib/authErrors";
+import {
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
+
+const provider = new GoogleAuthProvider();
 
 function Login() {
   const dispatch = useAppDispatch();
@@ -27,12 +33,10 @@ function Login() {
       const user = userCredential.user;
       console.log("Logged in as guest! User ID:", user.uid);
       dispatch(closeModal());
-      // Optional: Redirect the user to your app dashboard here
+      
       router.push("/for-you");
     } catch (err) {
-      const error = err as Error;
-      console.error("Guest login failed:", error.message);
-      // setError("Could not sign in as a guest. Please try again.");
+      toast.error(getAuthErrorMessage(err))
     } finally {
       // setIsLoading(false);
     }
@@ -46,6 +50,18 @@ function Login() {
       toast.success(`Welcome back, ${email}!`);
 
       router.push("/for-you");
+    } catch (err) {
+      toast.error(getAuthErrorMessage(err));
+    }
+  }
+
+  async function handleGoogleLogin() {
+    try {
+      const result = await signInWithPopup(auth, provider);
+      if (result.user) {
+        dispatch(closeModal());
+        router.push("/for-you");
+      }
     } catch (err) {
       toast.error(getAuthErrorMessage(err));
     }
@@ -78,7 +94,10 @@ function Login() {
           <span className={styles.dividerLine}></span>
         </div>
 
-        <button className={`${styles.ctaBtn} ${styles.googleBtn}`}>
+        <button
+          className={`${styles.ctaBtn} ${styles.googleBtn}`}
+          onClick={handleGoogleLogin}
+        >
           <span className={styles.googleIcon}>
             <Image src={googleLogo} alt="" width={20} height={20} />
           </span>
@@ -95,6 +114,7 @@ function Login() {
           <input
             className={styles.input}
             type="email"
+            value={email}
             placeholder="Email Address"
             required
             onChange={(e) => setEmail(e.target.value)}
@@ -102,6 +122,7 @@ function Login() {
           <input
             className={styles.input}
             type="password"
+            value={password}
             placeholder="Password"
             required
             onChange={(e) => setPassword(e.target.value)}

@@ -3,7 +3,7 @@ import SelectedForYou from './SelectedForYou';
 import RecommendedBooks from './RecommendedBooks';
 import SuggestedBooks from './SuggestedBooks';
 
-async function ForYouContent() {
+function ForYouContent() {
   return (
     <div className={styles.for_you__background}>
       <div className={styles.row}>

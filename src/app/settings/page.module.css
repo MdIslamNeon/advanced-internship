@@ -1,0 +1,89 @@
+.settings__container {
+    margin-left: 200px;
+    padding: 40px 0;
+    width: calc(100% - 200px);
+}
+
+.settings__row {
+    max-width: 1070px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.section__title.page__title {
+    text-align: left;
+    border-bottom: 1px solid #e1e7ea;
+    padding-bottom: 16px;
+}
+
+.section__title {
+    font-size: 32px;
+    color: #032b41;
+    text-align: center;
+    margin-bottom: 32px;
+    font-weight: 700;
+}
+
+.setting__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid #e1e7ea;
+    padding-bottom: 24px;
+}
+
+.settings__sub_title {
+    font-size: 18px;
+    font-weight: 700;
+    color: #032b41;
+}
+
+.settings__text {
+    color: #032b41;
+}
+
+.btn {
+    background-color: #2bd97c;
+    color: #032b41;
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: background-color .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 180px;
+}
+
+.btn.settings__upgrade_btn {
+    width: fit-content;
+}
+
+.settings__login_wrapper {
+    max-width: 460px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.login_image {
+    width: 100%;
+    height: 100%;
+}
+
+.settings__login_text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #032b41;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.btn.settings__login_btn {
+    width: 100px;
+}

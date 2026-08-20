@@ -5,6 +5,8 @@ interface AppUser {
   email: string | null; // null for guest logins
   displayName: string | null; // null unless set (Google login fills this)
   isAnonymous: boolean;
+  isSubscribed: boolean;
+  planName: string | null; // null unless subscribed
 }
 
 interface UserState {
@@ -13,19 +15,24 @@ interface UserState {
 }
 
 const initialState: UserState = {
-    user: null,
-    loading: true
-}
+  user: null,
+  loading: true,
+};
 
 export const userSlice = createSlice({
-    name: 'user',
-    initialState,
-    reducers: {
-        setUser: (state, action: PayloadAction<AppUser | null>) => {
-            state.user = action.payload;
-            state.loading = false;
-        }
-    }
+  name: "user",
+  initialState,
+  reducers: {
+    setUser: (state, action: PayloadAction<AppUser | null>) => {
+      state.user = action.payload;
+      state.loading = false;
+    },
+    setSubscriptionStatus: (state, action: PayloadAction<boolean>) => {
+      if (state.user) {
+        state.user.isSubscribed = action.payload;
+      }
+    },
+  },
 });
 
 export const { setUser } = userSlice.actions;
