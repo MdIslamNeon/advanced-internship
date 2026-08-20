@@ -62,3 +62,28 @@
 .btn.settings__upgrade_btn {
     width: fit-content;
 }
+
+.settings__login_wrapper {
+    max-width: 460px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.login_image {
+    width: 100%;
+    height: 100%;
+}
+
+.settings__login_text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #032b41;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.btn.settings__login_btn {
+    width: 100px;
+}

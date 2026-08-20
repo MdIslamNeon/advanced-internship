@@ -14,7 +14,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { openModal } from "@/redux/modalSlice";
 import { usePathname, useRouter } from "next/navigation";
 import { signOut } from "firebase/auth";
-import {auth} from '../../redux/firebase';
+import { auth } from "../../redux/firebase";
 
 function Sidebar() {
   const { user, loading } = useAppSelector((state) => state.user);
@@ -26,7 +26,7 @@ function Sidebar() {
 
   async function handleLogout() {
     await signOut(auth);
-    router.push('/');
+    router.push("/");
   }
 
   return (
@@ -46,7 +46,7 @@ function Sidebar() {
             </div>
             <div className={styles.sidebar__link__text}>For You</div>
           </a>
-          <a className={styles.sidebar__link__wrapper} href="/for-you">
+          <a className={styles.sidebar__link__wrapper} href="/library">
             <div className={styles.sidebar__icon__wrapper}>
               <CiBookmark />
             </div>
