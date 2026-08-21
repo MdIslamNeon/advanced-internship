@@ -34,6 +34,9 @@ function PlayerDetail() {
     getBook(bookId);
   }, [bookId]);
 
+  // Shared by the redirect and the render guard below so the two can't drift.
+  const needsUpgrade = !!book?.subscriptionRequired && !user?.isSubscribed;
+
   // The book page gates the Read/Listen buttons, but this route can also be
   // reached by typing the URL, so the same rules run again on mount.
   useEffect(() => {
@@ -45,10 +48,10 @@ function PlayerDetail() {
       return;
     }
 
-    if (book?.subscriptionRequired) {
+    if (needsUpgrade) {
       router.replace("/choose-plan");
     }
-  }, [authLoading, loading, user, book, bookId, router, dispatch]);
+  }, [authLoading, loading, user, needsUpgrade, bookId, router, dispatch]);
 
   if (authLoading || loading) {
     return (
@@ -65,7 +68,7 @@ function PlayerDetail() {
   }
 
   // Redirects only run after render, so hide the summary while one is pending.
-  if (!user || book?.subscriptionRequired) return null;
+  if (!user || needsUpgrade) return null;
 
   if (!book) {
     return (

@@ -7,13 +7,13 @@ import Settings from "../components/Settings";
 import LoginImage from "../components/LoginImage";
 
 function SettingsPage() {
-  const { user } = useAppSelector((state) => state.user);
+  const { user, loading } = useAppSelector((state) => state.user);
 
   return (
     <>
       <Sidebar />
       <Searchbar />
-      {user ? <Settings /> : <LoginImage />}
+      {loading ? <p>Loading...</p> : user ? <Settings /> : <LoginImage />}
     </>
   );
 }

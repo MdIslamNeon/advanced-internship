@@ -28,8 +28,8 @@ function BookDetail({ book, loading }: Props) {
       dispatch(openModal('login'));
       return;
     }
-    if(book?.subscriptionRequired) {
-      router.push("/choose-plan");
+    if(book?.subscriptionRequired && !user.isSubscribed) {
+      router.replace("/choose-plan");
       return;
     }
 
