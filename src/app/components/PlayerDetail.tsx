@@ -45,7 +45,7 @@ function PlayerDetail() {
       return;
     }
 
-    if (book?.subscriptionRequired) {
+    if (book?.subscriptionRequired && !user.isSubscribed) {
       router.replace("/choose-plan");
     }
   }, [authLoading, loading, user, book, bookId, router, dispatch]);

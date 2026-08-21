@@ -29,7 +29,7 @@ function BookDetail({ book, loading }: Props) {
       return;
     }
     if(book?.subscriptionRequired && !user.isSubscribed) {
-      router.push("/choose-plan");
+      router.replace("/choose-plan");
       return;
     }
 
