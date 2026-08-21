@@ -4,6 +4,7 @@ import "./globals.css";
 import { ReduxProvider } from "@/redux/provider";
 import AuthModal from "./components/AuthModal"
 import { Toaster } from "sonner";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

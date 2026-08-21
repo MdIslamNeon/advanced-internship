@@ -28,7 +28,7 @@ function BookDetail({ book, loading }: Props) {
       dispatch(openModal('login'));
       return;
     }
-    if(book?.subscriptionRequired) {
+    if(book?.subscriptionRequired && !user.isSubscribed) {
       router.push("/choose-plan");
       return;
     }
